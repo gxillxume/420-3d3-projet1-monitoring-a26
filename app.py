@@ -17,6 +17,9 @@ class App:
         self.canvas_cpu = tk.Canvas(self.frame_cpu, width=300, height=20, bg="white")
         self.canvas_cpu.pack()
 
+        self.label = tk.Label(self.frame_cpu, text="Avertissement", fg= "red", font=("Arial", 12, "bold"))
+        self.label.pack()
+
         # --- RAM ---
         self.frame_ram = tk.LabelFrame(self.fenetre, text="RAM", padx=10, pady=10)
         self.frame_ram.pack(fill=tk.X, padx=10, pady=5)
@@ -65,7 +68,7 @@ class App:
         else:
             couleur_ram = "red"
         self.canvas_ram.create_rectangle(0, 0, largeur_ram, 20, fill=couleur_ram, outline="")
-
+        self.label.config(text="", fg="black")
         # Mettre à jour Disque
         self.label_disque.config(text=f"{disque:.1f}%")
         self.canvas_disque.delete("all")
@@ -76,6 +79,7 @@ class App:
             couleur_disque = "orange"
         else:
             couleur_disque = "red"
+            self.label.config(text="Avertissement", fg="red")
         self.canvas_disque.create_rectangle(0, 0, largeur_disque, 20, fill=couleur_disque, outline="")
 
         # Écrire dans le fichier log
